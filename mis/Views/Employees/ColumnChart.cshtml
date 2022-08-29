@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>ColumnChart</h2>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("Employee_joining", "Employees")',
+                success: function (result) {
+                    console.log(result);
+
+                    google.charts.load('current', {
+                        'packages': ['timeline']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('datetime', 'Start date');
+            data.addColumn('datetime', 'End date');
+            var dataArray = [];
+
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, new Date(obj.Joining_date), new Date(obj.Resignation_date)]);
+            });
+            //var data = new google.visualization.arrayToDataTable(dataArray);
+            data.addRows(dataArray);
+
+            var columnChartOptions = {
+                title: "Employees Data",
+                width: 1000,
+                height: 400,
+                timeline: {
+                    groupByRowLabel: true
+                }
+            };
+
+            var columnChart = new google.visualization.Timeline(document
+                .getElementById('linechart_div'));
+
+            columnChart.draw(data, columnChartOptions);
+
+            var csv = google.visualization.dataTableToCsv(data);
+            console.log("csv " + csv);
+
+
+
+        }
+</script>
+
+<figure id="linechart_div"></figure>
+
+<script>
+    // Load the Visualization API and the controls package.
+    // Packages for all the other charts you need will be loaded
+    // automatically by the system.
+    google.charts.load('current', { 'packages': ['corechart', 'controls'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawDashboard);
+
+    function drawDashboard() {
+        // Everything is loaded. Assemble your dashboard...
+
+        // Create our data table.
+        var data = google.visualization.arrayToDataTable([
+            ['Name', 'Gender', 'Age', 'Donuts eaten'],
+            ['Michael', 'Male', 12, 5],
+            ['Elisa', 'Female', 20, 7],
+            ['Robert', 'Male', 7, 3],
+            ['John', 'Male', 54, 2],
+            ['Jessica', 'Female', 22, 6],
+            ['Aaron', 'Male', 3, 1],
+            ['Margareth', 'Female', 42, 8]
+        ]);
+
+        // Create a dashboard.
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+
+        // Create a range slider, passing some options
+        var donutRangeSlider = new google.visualization.ControlWrapper({
+            'controlType': 'NumberRangeFilter',
+            'containerId': 'filter_div',
+            'options': {
+                'filterColumnLabel': 'Donuts eaten',
+                'minValue': 1,
+                'maxValue': 10
+            },
+            // Explicitly positions the thumbs at position 3 and 8,
+            // out of the possible range of 1 to 10.
+            'state': { 'lowValue': 3, 'highValue': 8 }
+        });
+
+        // Create a pie chart, passing some options
+        var pieChart = new google.visualization.ChartWrapper({
+            'chartType': 'PieChart',
+            'containerId': 'chart_div',
+            'options': {
+                'width': 300,
+                'height': 300,
+                is3D: true,
+                'title': 'Donuts eaten per person'
+            },
+            // The pie chart will use the columns 'Name' and 'Donuts eaten'
+            // out of all the available ones.
+            'view': { 'columns': [0, 3] }
+        });
+
+        // 'pieChart' will update whenever you interact with 'donutRangeSlider'
+        // to match the selected range.
+        dashboard.bind(donutRangeSlider, pieChart);
+
+
+
+
+
+        // Draw the dashboard.
+        dashboard.draw(data);
+    }
+
+</script>
+
+
+<!--Div that will hold the dashboard-->
+<div id="dashboard_div">
+    <!--Divs that will hold each control and chart-->
+    <div id="filter_div"></div>
+    <div id="chart_div"></div>
+</div>
+
+
+

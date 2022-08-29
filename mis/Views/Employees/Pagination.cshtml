@@ -1,0 +1,8 @@
+﻿@model mis.Models.Employee
+@using PagedList.Mvc;
+
+
+<a href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+Page @(Model.employees.PageCount < Model.employees.PageNumber ? 0 : Model.employees.PageNumber)
+of @Model.employees.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

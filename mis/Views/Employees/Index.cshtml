@@ -1,0 +1,440 @@
+﻿@model mis.Models.Mymodel
+@*@model PagedList.IPagedList<mis.Models.Mymodel>*@
+@using PagedList.Mvc;
+@using mis.Models;
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Content Start -->
+<!-- Organization Detail Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+
+                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today Employee</p>
+                    <h6 class="mb-0">@TempData["TotalEmployee"]</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Pc</p>
+                    <h6 class="mb-0">@TempData["TotalPc"]</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today Lp</p>
+                    <h6 class="mb-0">@TempData["TotalLp"]</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Accesssory</p>
+                    <h6 class="mb-0">3</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Organization Detail End -->
+<!-- Employee Details Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Employee Details</h6>
+            <a href="@Url.Action("EmployeeExcel", "Employees")">Download Excel</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" id="emptable">
+                <tr class="text-white">
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Mobile Number
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                    <th>
+                        Aadhaar Number
+                    </th>
+                    <th>
+                        Pan Number
+                    </th>
+                    <th>
+                        Birth Date
+                    </th>
+                    <th>
+                        Job Title
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Supervisor
+                    </th>
+                    <th>
+                        Work Location
+                    </th>
+                    <th>
+                        Joining Date
+                    </th>
+                    <th>
+                        Resignation Date
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.employees)
+                {
+                    <tr>
+                        <td>
+                            @*@item.User_id*@
+                            @Html.DisplayFor(modelItem => item.User_id)
+                        </td>
+                        <td>
+                            @*@item.Name*@
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @*@item.Address*@
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @*@item.Mobile_number*@
+                            @Html.DisplayFor(modelItem => item.Mobile_number)
+                        </td>
+                        <td>
+                            @*@item.Email_address*@
+                            @Html.DisplayFor(modelItem => item.Email_address)
+                        </td>
+                        <td>
+                            @*@item.Aadhaar_number*@
+                            @Html.DisplayFor(modelItem => item.Aadhaar_number)
+                        </td>
+                        <td>
+                            @*@item.Pan_number*@
+                            @Html.DisplayFor(modelItem => item.Pan_number)
+                        </td>
+                        <td>
+                            @*@item.Birth_date*@
+                            @Html.DisplayFor(modelItem => item.Birth_date)
+                        </td>
+                        <td>
+                            @*@item.Job_title*@
+                            @Html.DisplayFor(modelItem => item.Job_title)
+                        </td>
+                        <td>
+                            @*@item.Department*@
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @*@item.Supervisor*@
+                            @Html.DisplayFor(modelItem => item.Supervisor)
+                        </td>
+                        <td>
+                            @*@item.Work_location*@
+                            @Html.DisplayFor(modelItem => item.Work_location)
+                        </td>
+                        <td>
+                            @*@item.Joining_date*@
+                            @Html.DisplayFor(modelItem => item.Joining_date)
+                        </td>
+                        <td>
+                            @*@item.Resignation_date*@
+                            @Html.DisplayFor(modelItem => item.Resignation_date)
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                @*<div class="col">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id, @class = "btn btn-sm btn-outline-danger" })
+                            </div>*@
+                                <div class="col">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id, @class = "btn btn-sm btn-outline-danger" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+            <link href="~/Content/PagedList.css" rel="stylesheet" />
+            Page @(Model.employees.PageCount < Model.employees.PageNumber ? 0 : Model.employees.PageNumber)
+            of @Model.employees.PageCount
+            @Html.PagedListPager(Model.employees, page => Url.Action("Index", new { page }))
+            
+        </div>
+    </div>
+</div>
+
+<!-- Employee Details End -->
+<!-- Pc Details Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Pc Details</h6>
+            <a href="@Url.Action("PcCsv","Pcs")">Download Csv</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <tr class="text-white">
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Company_name
+                    </th>
+                    <th>
+                        Model_no
+                    </th>
+                    <th>
+                        Product_id
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Pcpaged)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_id)
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Pcs" })
+                                </div>
+                                <div class="col">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Pcs" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            Page @(Model.Pcpaged.PageCount < Model.Pcpaged.PageNumber ? 0 : Model.Pcpaged.PageNumber)
+            of @Model.Pcpaged.PageCount
+            @Html.PagedListPager(Model.Pcpaged, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</div>
+<!-- Pc Details End -->
+<!-- Lp Details Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Lp Details</h6>
+            <a href="@Url.Action("lpexcel","Lps")">Download Excel</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <tr class="text-white">
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Company_name
+                    </th>
+                    <th>
+                        Model_no
+                    </th>
+                    <th>
+                        Product_id
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Lppaged)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_id)
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Lps" })
+                                </div>
+                                <div class="col">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Lps" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            Page @(Model.Lppaged.PageCount < Model.Lppaged.PageNumber ? 0 : Model.Lppaged.PageNumber)
+            of @Model.Lppaged.PageCount
+            @Html.PagedListPager(Model.Lppaged, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</div>
+<!-- Lp Details End -->
+<!-- allotment Details Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Allotment Details</h6>
+            <a href="@Url.Action("EmployeeExcel","Employees")">Download Excel</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <tr class="text-white">
+                    <th>
+                        Employee_name
+                    </th>
+                    <th>
+                        Product_alloted
+                    </th>
+                    <th>
+                        Product_id
+                    </th>
+                    <th>
+                        Accessories
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.allotPaged)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_alloted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Accessories)
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Home" })
+                                </div>
+                                <div class="col">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id, @class = "btn btn-sm btn-outline-danger", @Controller = "Home" })
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            Page @(Model.allotPaged.PageCount < Model.allotPaged.PageNumber ? 0 : Model.allotPaged.PageNumber)
+            of @Model.allotPaged.PageCount
+            @Html.PagedListPager(Model.allotPaged, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</div>
+<!-- allotment Details End -->
+<!-- employee Chart Start -->
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Employees Data</h6>
+        </div>
+        @Html.Partial("Chart")
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+        <!--<div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">Employees Data</h6>
+                            <a href="">Show All</a>
+                        </div>
+                        @Html.Partial("Chart")
+                    </div>
+                </div>-->
+
+                @*<div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Salse & Revenue</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="salse-revenue"></canvas>
+                        </div>
+                    </div>*@
+            <!--</div>
+        </div>-->
+        <!-- employee Chart End -->
+        <!-- Content End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+

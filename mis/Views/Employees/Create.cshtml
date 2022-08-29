@@ -1,0 +1,176 @@
+﻿@model mis.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+
+<div class="container-fluid pt-4 px-4" >
+    <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-8">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <br />
+                <h4 class="text-center">Add Employee</h4>
+                <hr />
+
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.User_id, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.User_id, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Address, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Mobile_number, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Mobile_number, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Email_address, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Email_address, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Aadhaar_number, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Aadhaar_number, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Pan_number, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Pan_number, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Birth_date, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Birth_date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Job_title, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Job_title, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Department, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Department, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Supervisor, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Supervisor, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col">
+                        <div class="row mb-3">
+                            @Html.LabelFor(m => m.Work_location, new { @class = "col-sm-4 col-form-label" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(m => m.Work_location, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.ValidationSummary("", new { @class = "text-danger col-6" })
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 text-center ">
+                        <input type="submit" value="Create" class="btn btn-outline-success " />
+                    </div>
+                </div>
+            </div>
+            }
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

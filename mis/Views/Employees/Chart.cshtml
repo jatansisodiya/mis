@@ -1,0 +1,88 @@
+﻿<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("Employee_joining", "Employees")',
+                success: function (result) {
+                    console.log(result);
+
+                    google.charts.load('current', {
+                        'packages': ['timeline']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('datetime', 'Start date');
+            data.addColumn('datetime', 'End date');
+            var dataArray = [];
+
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, new Date(13, 06, 2022, 12, 40, 44), new Date(13, 06, 2022, 13, 40, 44)]);
+            });
+            //var data = new google.visualization.arrayToDataTable(dataArray);
+            data.addRows(dataArray);
+
+            var columnChartOptions = {
+                title: "Employees Data",
+                width: 1150,
+                
+                timeline: {
+                    groupByRowLabel: true
+                },
+                backgroundColor: '#000'
+            };
+
+            var columnChart = new google.visualization.Timeline(document
+                .getElementById('linechart_div'));
+
+            columnChart.draw(data, columnChartOptions);
+
+            var csv = google.visualization.dataTableToCsv(data);
+            console.log("csv " + csv);
+
+            
+                var components = [
+                    {
+                        type: 'igoogle', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA',
+                        gadget: 'https://www.google.com/ig/modules/pie-chart.xml',
+                        userprefs: { '3d': 1 }
+                    },
+                    { type: 'html', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' },
+                    { type: 'csv', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' },
+                    {
+                        type: 'htmlcode', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA',
+                        gadget: 'https://www.google.com/ig/modules/pie-chart.xml',
+                        userprefs: { '3d': 1 },
+                        style: 'width: 800px; height: 700px; border: 3px solid purple;'
+                    }
+                ];
+
+                var container = document.getElementById('toolbar_div');
+                google.visualization.drawToolbar(container, components);
+
+
+
+        }
+</script>
+<style>
+    #linechart_div text {
+        fill: red !important;
+    }
+</style>
+
+<figure id="linechart_div"></figure>
+<div id="toolbar_div"></div>

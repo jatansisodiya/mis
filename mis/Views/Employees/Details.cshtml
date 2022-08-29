@@ -1,0 +1,114 @@
+﻿@model mis.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aadhaar_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aadhaar_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pan_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pan_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birth_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birth_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supervisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supervisor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Work_location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Work_location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,34 @@
+﻿@using mis.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+<!-- Content Start -->
+<!-- Sale & Revenue Start -->
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row vh-100 bg-secondary rounded justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <hr />
+
+            @{
+                //Html.RenderPartial("Allot_data",);
+                Html.RenderPartial("Allot_product", new allotment_detail());
+
+                // with list
+                @*foreach (var item in Model.adList)
+                {
+                    @item.id
+                }*@
+
+                // use withut list
+               // @Model.ad.id;
+            }
+
+
+
+
+
+        </div>
+    </div>
+</div>

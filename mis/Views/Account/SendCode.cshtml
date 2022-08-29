@@ -1,0 +1,39 @@
+﻿@model mis.Models.SendCodeViewModel
+@{
+    ViewBag.Title = "Send";
+}
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+
+            <h2>@ViewBag.Title.</h2>
+            @using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("rememberMe", @Model.RememberMe)
+                <h4>Send verification code</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-8 " style="position:absolute;left:25rem;">
+
+                        <p >
+                            Select Two-Factor Authentication Provider:
+                        </p>
+                         <br />
+                        @Html.DropDownListFor(model => model.SelectedProvider, Model.Providers)<br /><br />
+                        <input type="submit" value="Submit" class="btn btn-outline-success" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

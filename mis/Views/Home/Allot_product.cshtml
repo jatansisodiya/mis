@@ -1,0 +1,89 @@
+﻿@model mis.Models.allotment_detail
+
+@using (Html.BeginForm("Allot_product", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>allotment_detail</h4>
+    <hr />
+
+
+    <div class="form-group">
+        <div class="row mb-3">
+            @Html.LabelFor(m => m.Employee_name, new { @class = "col-sm-4 col-form-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(m => m.Employee_name, ViewData["emptbl"] as SelectList, "select", new { @class = "form-select form-select-mb mb-2" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row mb-3">
+            @Html.LabelFor(m => m.Product_alloted, new { @class = "col-sm-4 col-form-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(m => m.Product_alloted, ViewData["product"] as SelectList, "select", new { @class = "form-select form-select-mb mb-2" })
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="row mb-3">
+            @Html.LabelFor(m => m.Product_id, new { @class = "col-sm-4 col-form-label" })
+            <div class="col-md-8">
+
+                @Html.DropDownListFor(m => m.Product_id, new SelectList(""), "select", new { @class = "form-select form-select-mb mb-2" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row mb-3">
+            @Html.LabelFor(m => m.Accessories, new { @class = "col-sm-4 col-form-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(m => m.Accessories, ViewData["ass"] as SelectList, "select", new { @class = "form-select form-select-mb mb-2" })
+            </div>
+        </div>
+    </div>
+
+    @Html.ValidationSummary("", new { @class = "text-danger col-6" })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-outline-success" />
+        </div>
+    </div>
+</div>
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#Product_alloted").change(() => {
+            post();
+        });
+
+        let post = () => {
+            $("#Product_id").empty();
+            $.get("/Home/product_id", { Product_alloted: $("#Product_alloted").val()}, function (data) {
+                $.each(data, function (index, row) {
+                    $("#Product_id").append("<option value=" + row.Product_id + ">" + row.Product_id+"</option>")
+                });
+            });
+
+        };
+    });
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
